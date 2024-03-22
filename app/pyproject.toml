@@ -7,7 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-django = "^5.0.3"
+django = "4.1"
+mysql-connector-python = "^8.3.0"
+mysqlclient = "2.0.1"
 
 
 [build-system]
