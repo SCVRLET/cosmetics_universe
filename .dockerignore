@@ -1,0 +1,6 @@
+__pycache__
+.gitignore
+README.md
+v_env
+db_django
+db.sqlite3
