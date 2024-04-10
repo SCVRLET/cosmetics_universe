@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
+PRODUCTS_IMPORT_DIR_PATH = os.path.join(PROJECT_PATH, 'import_files', 'products/')
+
 
 # Application definition
 
@@ -38,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'products_import',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +62,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +90,8 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST'), 
         'PORT': os.environ.get('DB_PORT'), 
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'" 
+            'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';"
         }
     }
 }
