@@ -1,0 +1,40 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% extends 'admin/base_site.html' %}
+
+{% block title %}Импортирование товаров{% endblock %}
+
+{% block content %}
+<script>
+$(document).ready(function() {
+    // Функция для отправки AJAX запроса и обновления статуса
+    function updateImportStatus() {
+        $.ajax({
+            url: '/ajax-products-import-status/',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Обновляем статус на странице
+                $('#import_status').text(data.status);
+                // Повторяем запрос через некоторое время
+                setTimeout(updateImportStatus, 5000);
+            },
+            error: function(xhr, status, error) {
+                console.error('Ошибка при получении статуса импорта:', error);
+            }
+        });
+    }
+
+    // Инициируем обновление статуса при загрузке страницы
+    updateImportStatus();
+});
+</script>
+
+<form method="post">
+        {% csrf_token %}
+        {{ products_import_form.as_p }}
+        <button type="submit">Submit</button>
+</form>
+
+<div id="import_status">
+</div>
+{% endblock %}

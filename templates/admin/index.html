@@ -1,0 +1,14 @@
+{% extends "admin/index.html" %}
+
+{% comment %}{% block extrastyle %}
+    {{ block.super }}
+    {# --- custom styles --- #}
+{% endblock %}{% endcomment %}
+
+{% block content %}
+    <div class="custom_block">
+        <p><a href="{% url 'products_import:products_import' %}">Import products</a></p>
+    </div>
+
+    {{ block.super }}
+{% endblock %}
