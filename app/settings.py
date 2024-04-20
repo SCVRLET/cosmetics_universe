@@ -28,11 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+MEDIA_ROOT = BASE_DIR / 'media'
 
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
-
-PRODUCTS_IMPORT_DIR_PATH = os.path.join(PROJECT_PATH, 'import_files', 'products/')
+PRODUCTS_IMPORT_DIR_PATH = BASE_DIR / 'import_files' / 'products/'
 
 
 # Application definition
@@ -45,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products_import',
+    'products_search',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_PATH, 'templates/')],
+        'DIRS': [BASE_DIR / 'templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,6 +131,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    ('products_import', BASE_DIR / 'products_search' / 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

@@ -1,0 +1,148 @@
+    .search_and_products
+    {
+      float: right;
+      max-width: 1400px;
+      display: flex;
+      text-align: center;
+      margin-right: 40px;
+      align-items: center;
+    }
+    .filter {
+      width: 300px;
+      float: left;
+      text-align: center;
+      background-color: aliceblue;
+    }
+    .products
+    {
+      background-color: aliceblue;
+      min-height: 500px;
+      min-width: 1200px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .product_card{ height: 300px; width: 214px; display: inline-block;
+     border-radius: .25em; margin: 10px; text-align: center;
+     background-color: white; }
+
+     .product_card_list
+     {
+      margin-top: 10px;
+      display: inherit;
+      text-align: left;
+
+      justify-content: space-between;
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .product_image
+    {
+      height: 170px;
+      width: 160px;
+      display: inline-block;
+      margin: 10px;
+      border-radius: .25em;
+    }
+
+    .product_image img
+    {
+      background-size: 100% 100%;
+      height: inherit;
+      border-radius: inherit;
+      max-width: 150px;
+    }
+
+    .product_name {
+      width: 80%;
+      display: inline-block;
+      height: 20%;
+    }
+
+    .navbar
+    {
+      padding: 0;
+    }
+
+    .container-fluid
+    {
+      background-color: #4D9DE0;
+    }
+
+    .navbar-brand
+    {
+      color: white;
+    }
+
+    .search
+    {
+      margin-left: 25px;
+    }
+
+    .btn.btn-outline-success
+    {
+      margin-left: 25px;
+    }
+
+    .dropdown-toggle
+    {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .filter_name
+    {
+      margin-top: 15px;
+    }
+
+    .filter_submit_button
+    {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      float: right;
+    }
+
+    #search_string
+    {
+      max-width: 1000px;
+    }
+
+    #search_button
+    {
+      float: right;
+    }
+
+    .container.search
+    {
+      display: flex;
+    }
+
+    .btn.btn-secondary.dropdown-toggle
+    {
+      background-color: #7768AE;
+      border-color: #7768AE;
+    }
+
+    .btn.btn-secondary.dropdown-toggle:active, .btn.btn-secondary.dropdown-toggle:hover, .btn.btn-secondary.dropdown-toggle:target
+    {
+      background-color: #765AAD;
+      border-color: #765AAD;
+    }
+
+    .btn.btn-secondary.dropdown-toggle:focus
+    {
+      box-shadow: none;
+    }
+    .dropdown-menu li
+    {
+      margin-left: 20px;
+    }
+
+    .container.pagination {
+      margin-top: 20px;
+      display: block ruby;
+      margin-bottom: 20px;
+    }

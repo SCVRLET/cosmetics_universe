@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск товаров</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'products_import/css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'products_import/css/products_catalog.css' %}">
+  {% include "partial_views/base_scripts.html" %}
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        Cosmetics Universe
+      </a>
+    </div>
+  </nav>
+  <div class="container filter">
+    <div class="filter_name">
+      Фильтр
+    </div>
+
+    <form method="get">
+      {% for field in filter_form %}
+      <div class="filter-field">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            {{ field.label }}
+          </button>
+          <ul class="dropdown-menu"  style="max-height: 200px; overflow-y: auto;" aria-labelledby="dropdownMenuButton">
+            {% for choice in field %}
+            <li>{{ choice }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endfor %}
+      <button class="btn btn-outline-success filter_submit_button" type="submit">Применить</button>
+    </div>
+
+    <div class="container search_and_products">
+      <div class="container search">
+        <input id="search_string" class="form-control me-2" value="{{ search_string }}" type="search" name="search_q" placeholder="Поиск" aria-label="Поиск">
+        <button id="search_button" class="btn btn-outline-success" type="submit">Поиск</button>
+      </form>
+    </div>
+
+    <div class="container products">
+      {% for product in products %}
+      <div class="product_card">
+       <div class="product_image">
+        {% if product.image %}
+        <img src="{{ MEDIA_URL }}{{ product.image.url }}">
+        {% endif %}
+      </div>
+      <div class="product_name">
+        <a href="{{ product.source_link }}">
+         {{ product.title|truncatechars:36|linebreaks }}
+       </a>
+     </div>
+     <div class="product_price">
+       {{ product.price_range }}
+     </div>
+   </div>
+   {% endfor %}
+ </div>
+ <div class="container pagination">
+  {% include "partial_views/pagination.html" with page=products %}
+</div>
+</div>
+
+</body>
+</html>

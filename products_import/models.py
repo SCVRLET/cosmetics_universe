@@ -45,6 +45,19 @@ class Product(models.Model):
 	image = models.ImageField(upload_to='product_images/', null=True, blank=True)
 	description = models.CharField(max_length=1000)
 
+	@property
+	def price_range(self):
+		offers_prices = list(map(lambda x: x.price_with_discount, Offer.objects.filter(product=self)))
+		unique_prices = set(offers_prices)
+
+		if len(unique_prices) == 1:
+			return str(next(iter(unique_prices))) + ' ₽'
+		else:
+			# Если есть несколько уникальных цен, возвращаем диапазон
+			min_price = min(unique_prices)
+			max_price = max(unique_prices)
+			return f"{min_price} - {max_price} ₽"
+
 	class Meta:
 		db_table = 'product'
 
@@ -67,7 +80,7 @@ class Offer(models.Model):
 
 	@property
 	def price_with_discount(self):
-		return self.price_with_discount - self.price_with_discount * self.discount
+		return int(self.price_without_discount - self.price_without_discount * (self.discount/100))
 
 	class Meta:
 		db_table = 'offer'
