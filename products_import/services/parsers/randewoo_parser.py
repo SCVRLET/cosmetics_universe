@@ -42,9 +42,14 @@ class RandewooParser(BaseParser):
 	def get_number_of_pages_in_catalog(self, catalog_page_html: str) -> int:
 		soup = BeautifulSoup(catalog_page_html, 'html.parser')
 
-		page_last_number = int(soup.find_all('li', class_='pager__item')[-2].find('span').text)
+		pager_items = soup.find_all('li', class_='pager__item')
 
-		return page_last_number
+		if pager_items:
+			page_last_number = int(pager_items[-2].find('span').text)
+
+			return page_last_number
+
+		return 1
 
 	def get_product_cards_from_catalog_page(self, catalog_page_html: str) -> list:
 		soup = BeautifulSoup(catalog_page_html, 'html.parser')
@@ -125,5 +130,5 @@ class RandewooParser(BaseParser):
 			'product_image_link': product_image_link,
 		}
 
-	def get_pagination_key(self) -> str:
-		return 'page'
+	def get_pagination_url_part(self) -> str:
+		return '?&page='
