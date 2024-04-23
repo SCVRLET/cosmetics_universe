@@ -38,7 +38,7 @@ class BaseParser:
 	def get_product_cards_from_catalog_page(self, catalog_page_html: str) -> list:
 		return
 
-	def get_pagination_key(self) -> str:
+	def get_pagination_url_part(self) -> str:
 		return
 
 	def get_product_url_from_product_card(self, product_card: BeautifulSoup) -> str:

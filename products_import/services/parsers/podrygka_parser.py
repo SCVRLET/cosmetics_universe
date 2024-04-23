@@ -35,11 +35,14 @@ class PodrygkaParser(BaseParser):
 
 		pag_last_button = soup.find('a', class_='pagination__text pagination-backward')
 
-		last_page_link = pag_last_button['href']
+		if pag_last_button:
+			last_page_link = pag_last_button['href']
 
-		page_last_number = int(last_page_link.split('/')[-1].split('=')[-1])
+			page_last_number = int(last_page_link.split('/')[-1].split('=')[-1])
 
-		return page_last_number
+			return page_last_number
+
+		return 1
 
 	def get_info_from_product_page(self, product_page_html: str):
 		soup = BeautifulSoup(product_page_html, 'html.parser')
@@ -76,8 +79,8 @@ class PodrygkaParser(BaseParser):
 			'product_image_link': product_image_link
 		}
 
-	def get_pagination_key(self):
-		return 'PAGEN_1'
+	def get_pagination_url_part(self):
+		return '?&PAGEN_1='
 
 	def get_product_link_from_product_card(self, product_card_html: BeautifulSoup) -> str:
 		return product_card_html.find('a', class_='products-list-item__title')['href']
