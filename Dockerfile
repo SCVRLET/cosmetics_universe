@@ -6,7 +6,7 @@ WORKDIR /cosmetics_universe
 
 COPY . /cosmetics_universe
 
-RUN apt update && apt install -y default-libmysqlclient-dev python-dev gcc
+RUN apt update && apt install -y default-libmysqlclient-dev python-dev gcc libpq-dev
 
 RUN pip install --no-cache-dir poetry
 
