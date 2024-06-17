@@ -38,11 +38,12 @@ class Shop(models.Model):
 
 class Product(models.Model):
 	title = models.CharField(max_length=150)
-	source_link = models.URLField(max_length=350)
+	source_link = models.CharField(max_length=1000)
 	brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE)
 	category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 	shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='product_images/', null=True, blank=True)
+	image_source_link = models.CharField(max_length=1000, null=True)
 	description = models.CharField(max_length=1000)
 
 	@property

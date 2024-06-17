@@ -11,8 +11,6 @@ import time
 from .forms import ProductsImportForm
 from .services.products_import_service import ProductsImporter
 
-from .services import temp
-
 
 class ProductsImportView(View):
 	@sync_to_async
