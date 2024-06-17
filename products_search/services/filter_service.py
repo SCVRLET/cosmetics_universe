@@ -1,6 +1,6 @@
 from products_import.models import Product
 
-def filter_products(products, category_ids=None, brand_ids=None, shop_ids=None):
+def filter_products(products, category_ids:list=None, brand_ids:list=None, shop_ids:list=None):
 	if category_ids:
 		products = products.filter(category__in=category_ids)
 	if brand_ids:

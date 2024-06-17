@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 PRODUCTS_IMPORT_DIR_PATH = BASE_DIR / 'import_files' / 'products/'
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 	'products_import',
 	'products_search',
+	'ai_integration',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +134,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
 	('products_import', BASE_DIR / 'products_search' / 'static'),
 ]
+
+AI_API_KEY = os.environ.get('AI_API_KEY')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
